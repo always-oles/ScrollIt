@@ -168,10 +168,12 @@ function detectInstagram() {
 
 function getWindowHeight() {
 	const body = document.body,
-				html = document.documentElement;
+        html = document.documentElement;
 
-	return Math.max( body.scrollHeight, body.offsetHeight, html.clientHeight,
-									 html.scrollHeight, html.offsetHeight );
+	return Math.max(
+    body.scrollHeight, body.offsetHeight, html.clientHeight,
+    html.scrollHeight, html.offsetHeight
+  );
 }
 
 /**
