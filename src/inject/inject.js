@@ -80,8 +80,8 @@ function beforeScroll(direction, times) {
 **/
 function closestScrollable(element, previousMaxHeight = 0) {
 	let scrollableElement = element,
- 			overflowY = window.getComputedStyle(element)['overflow-y'],
-			maxHeight = element.clientHeight || 0;
+			overflowY = window.getComputedStyle(element)['overflow-y'],
+      maxHeight = element.clientHeight || 0;
 
 	if (previousMaxHeight > maxHeight) {
 		maxHeight = previousMaxHeight;
@@ -89,7 +89,7 @@ function closestScrollable(element, previousMaxHeight = 0) {
 
 	// checking if current element has overflow / scroll
 	if (( overflowY === 'scroll' || overflowY === 'auto' ) &&
-			( scrollableElement.scrollHeight > scrollableElement.clientHeight ))
+      ( scrollableElement.scrollHeight > scrollableElement.clientHeight ))
 		{
 			// we got THE ONE
 			return {
