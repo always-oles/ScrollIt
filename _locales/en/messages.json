@@ -1,0 +1,9 @@
+{
+  "description": {
+    "message":"Hello"
+  }
+
+  ,"extension_description": {
+    "message": "Scroll any website with a lazy loading feature (when new items appear on page upon scrolling to the bottom)"
+  }
+}

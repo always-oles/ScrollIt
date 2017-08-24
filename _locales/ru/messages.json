@@ -1,0 +1,45 @@
+{
+  "context_menu_main": {
+    "message":"Прокрутка"
+  }
+
+  ,"context_menu_up_forever": {
+    "message":"Вечная прокрутка вверх"
+  }
+
+  ,"context_menu_down_forever": {
+    "message":"Вечная прокрутка вниз"
+  }
+
+  ,"context_menu_stop": {
+    "message":"Остановить прокрутку"
+  }
+
+  ,"context_menu_up_n_times": {
+    "message":"Прокрутить вверх N раз"
+  }
+
+  ,"context_menu_up_ten_times": {
+    "message":"Прокрутить вверх 10 раз"
+  }
+
+  ,"context_menu_down_n_times": {
+    "message":"Прокрутить вниз N раз"
+  }
+
+  ,"context_menu_down_ten_times": {
+    "message":"Прокрутить вниз 10 раз"
+  }
+
+  ,"how_many_times": {
+    "message":"Сколько раз прокрутить?"
+  }
+
+  ,"context_menu_down_end": {
+    "message":"Прокрутить вниз до конца"
+  }
+
+  ,"extension_description": {
+    "message": "Расширение для прокрутки страницы на сайтах с технологией lazy-load (подгрузкой новых записей по мере прокрутки страницы вниз)"
+  }
+}

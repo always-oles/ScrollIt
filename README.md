@@ -1,2 +1,4 @@
-# ScrollIt
-A Chrome/Opera extension for scrolling a lazy-loading content on any website
+# Scroll it!
+### A Chrome/Opera extension for scrolling a lazy-loading content on any website.
+
+**full readme is coming soon**
