@@ -1,9 +1,9 @@
 let clickedElement = null;
 
 /**
-When user clicks somewhere on the page with Right mouse button - we save the
-clicked element in global variable(we will need it if user decides to scroll
-inside)
+  When user clicks somewhere on the page with Right mouse button - we save the
+  clicked element in global variable(we will need it if user decides to scroll
+  inside)
 **/
 document.addEventListener("mousedown", function(event){
     if(event.button == 2)
