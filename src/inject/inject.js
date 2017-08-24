@@ -11,9 +11,9 @@ document.addEventListener("mousedown", function(event){
 }, false);
 
 /**
-	The actual message listener when context menu is getting clicked
-	@param object message = contains properties of the clicked CONTEXT_MENU
-	element and action
+  The actual message listener when context menu is getting clicked
+  @param object message = contains properties of the clicked CONTEXT_MENU
+  element and action
 **/
 chrome.runtime.onMessage.addListener(message => {
 
@@ -59,7 +59,7 @@ chrome.runtime.onMessage.addListener(message => {
 });
 
 /**
-	Hook that runs before scrolling and launches it after
+  Hook that runs before scrolling and launches it after
 **/
 function beforeScroll(direction, times) {
 
@@ -71,12 +71,12 @@ function beforeScroll(direction, times) {
 }
 
 /**
-	Starts from element where user chose to scroll. If it's not scrollable - then
-	go through all parents to the last <html> node and exit then
-	If succeed: return node and max height of all these nodes
-	@param node element = right-clicked element while opening a context menu
-	@param int previousMaxHeight = max height of an element found during recursion
-	@return object {node, maxHeight} or {false, maxHeight} if nothing has been found
+  Starts from element where user chose to scroll. If it's not scrollable - then
+  go through all parents to the last <html> node and exit then
+  If succeed: return node and max height of all these nodes
+  @param node element = right-clicked element while opening a context menu
+  @param int previousMaxHeight = max height of an element found during recursion
+  @return object {node, maxHeight} or {false, maxHeight} if nothing has been found
 **/
 function closestScrollable(element, previousMaxHeight = 0) {
 	let scrollableElement = element,
@@ -154,8 +154,8 @@ function scroll(direction, total, closestScrollable) {
 }
 
 /**
-	Check if current tab is an instagram website - click on "load more" button
-	to scroll freely
+  Check if current tab is an instagram website - click on "load more" button
+  to scroll freely
 **/
 function detectInstagram() {
 	if (window.location.href.includes('instagram')) {
@@ -175,9 +175,9 @@ function getWindowHeight() {
 }
 
 /**
-	Xpath helper
-	@param string STR_XPATH = the actual xpath of searched element(s)
-	@credits Thanks to https://stackoverflow.com/a/14669479/3687408
+  Xpath helper
+  @param string STR_XPATH = the actual xpath of searched element(s)
+  @credits Thanks to https://stackoverflow.com/a/14669479/3687408
 **/
 function _x(STR_XPATH) {
     let xresult = document.evaluate(STR_XPATH, document, null, XPathResult.ANY_TYPE, null),
