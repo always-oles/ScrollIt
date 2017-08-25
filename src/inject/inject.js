@@ -14,8 +14,9 @@ const INTERVAL = 500;
   inside)
 **/
 document.addEventListener("mousedown", function(event){
-  if(event.button == 2)
+  if(event.button == 2) {
     clickedElement = event.target;
+  }
 }, false);
 
 /**
@@ -30,8 +31,9 @@ chrome.runtime.onMessage.addListener(message => {
     case 'stop':
 
       // do not stop scrolling if it's not running
-      if (isRunning)
+      if (isRunning) {
         stopScrolling = true;
+      }
 
     break;
 
@@ -48,16 +50,17 @@ chrome.runtime.onMessage.addListener(message => {
 function prepareScroll (message) {
 
   // infinite scrolling
-	if ( message.infinite ) {
+  if ( message.infinite ) {
     beforeScroll(message.direction, -1);
   }
   // finite scrolling, ask user to enter number of repeats
   else {
     const total = +prompt(chrome.i18n.getMessage("how_many_times"), 5);
 
-		// if user clicked OK not CANCEL - run hook
-    if( total !== null )
+    // if user clicked OK not CANCEL - run hook
+    if( total !== null ) {
       beforeScroll(message.direction, total);
+    }
   }
 }
 
@@ -88,7 +91,7 @@ function closestScrollable (element, previousMaxHeight = 0) {
 
   // if we have new maximum
   if (previousMaxHeight > maxHeight) {
-  	maxHeight = previousMaxHeight;
+    maxHeight = previousMaxHeight;
   }
 
 	// checking if current element has overflow / scroll
@@ -100,19 +103,18 @@ function closestScrollable (element, previousMaxHeight = 0) {
         node: scrollableElement,
         maxHeight: maxHeight
       };
-
     } else {
-
       // if he has a parent element - lets give him a try with recursion
-      if (scrollableElement.parentElement)
+      if (scrollableElement.parentElement) {
         return closestScrollable(scrollableElement.parentElement, maxHeight);
-      else
+      } else {
         // or let's just return the max height of elements and false instead of node
         return {
           node: false,
           maxHeight: maxHeight
         };
-		}
+      }
+    }
 }
 
 /**
@@ -135,58 +137,57 @@ function scroll (direction, total, closestScrollable) {
     appendix = '\nClick me to switch to that tab.';
   }
 
-	// iterator
-	let doneTimes = 0,
+  // iterator
+  let doneTimes   = 0,
       safeCounter = 0; // safe because unused in conditions
 
-	// interval to scroll again
-	const interval = setInterval(() => {
+  // interval to scroll again
+  const interval = setInterval(() => {
 
+    ++safeCounter;
     isRunning = true;
 
-		// if we found an element that can be scrolled
-		if (closestScrollable.node) {
-			if (direction == "up")
-				closestScrollable.node.scrollTop -= closestScrollable.maxHeight;
-			else
-				closestScrollable.node.scrollTop += closestScrollable.maxHeight;
-		}
-		// try to use window by default
-		else {
-			if (direction == "up")
-				window.scrollTo(0, -getWindowHeight());
-			else
-				window.scrollTo(0, getWindowHeight());
-		}
+    // if we found an element that can be scrolled
+    if (closestScrollable.node) {
+      if (direction == "up")
+        closestScrollable.node.scrollTop -= closestScrollable.maxHeight;
+      else
+        closestScrollable.node.scrollTop += closestScrollable.maxHeight;
+    }
+    // try to use window by default
+    else {
+      if (direction == "up")
+        window.scrollTo(0, -getWindowHeight());
+      else
+        window.scrollTo(0, getWindowHeight());
+    }
 
     // increment iterator if loop is finite
     if ( !infinite && doneTimes < total ) {
       doneTimes++;
     }
 
-    ++safeCounter;
-
-		// check if we are done with iterations
-		if ( doneTimes >= total || stopScrolling === true ) {
+    // check if we are done with iterations
+    if ( doneTimes >= total || stopScrolling === true ) {
 
       // reset the scroll switcher
       stopScrolling = false;
 
       isRunning = false;
 
-			clearInterval(interval);
+      clearInterval(interval);
 
       // show user everything is ok
-			chrome.extension.sendMessage({
-				type: 'notification',
-				notification: {
-					id: 'scrolling',
-					title: `Job's done!`, // http://classic.battle.net/war3/images/orc/units/portraits/peon.gif
-					text: `I scrolled ${direction} (${safeCounter} times) and idle now.` + appendix
-				}
-			});
-		}
-	}, INTERVAL);
+      chrome.extension.sendMessage({
+        type: 'notification',
+        notification: {
+          id: 'scrolling',
+          title: `Job's done!`, // http://classic.battle.net/war3/images/orc/units/portraits/peon.gif
+          text: `I scrolled ${direction} (${safeCounter} times) and idle now.` + appendix
+        }
+      });
+    }
+  }, INTERVAL);
 }
 
 /**
@@ -194,15 +195,16 @@ function scroll (direction, total, closestScrollable) {
   to scroll freely
 **/
 function detectInstagram() {
-	if (window.location.href.includes('instagram')) {
+  if (window.location.href.includes('instagram')) {
 
     // find "load more" button
-		let anchor = _x(`//a[contains(@href, "${window.location.pathname}")]`);
+    let anchor = _x(`//a[contains(@href, "${window.location.pathname}")]`);
 
     // click on it if it is found
-    if (anchor && anchor[0])
-			anchor[0].click();
-	}
+    if (anchor && anchor[0]) {
+      anchor[0].click();
+    }
+  }
 }
 
 /**
@@ -224,13 +226,13 @@ function getWindowHeight() {
   @credits Thanks to https://stackoverflow.com/a/14669479/3687408
 **/
 function _x(STR_XPATH) {
-    let xresult = document.evaluate(STR_XPATH, document, null, XPathResult.ANY_TYPE, null),
-        xnodes = [],
-        xres;
+  let xresult = document.evaluate(STR_XPATH, document, null, XPathResult.ANY_TYPE, null),
+      xnodes = [],
+      xres;
 
-    while (xres = xresult.iterateNext()) {
-        xnodes.push(xres);
-    }
+  while (xres = xresult.iterateNext()) {
+    xnodes.push(xres);
+  }
 
-    return xnodes;
+  return xnodes;
 }

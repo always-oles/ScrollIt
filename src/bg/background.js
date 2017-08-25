@@ -19,11 +19,6 @@ chrome.contextMenus.create({
 });
 
 /**
-  Infinite scrolling section
-  P.S. I tried to write a generator for them but seems like it's a complex waste
-**/
-
-/**
   Infinite scroll UP
 **/
 chrome.contextMenus.create({
