@@ -3,16 +3,13 @@
     - replace all text with translations
     - infinite scroll
     - write a readme
-    - icon/logo
     - description
-    - all to github
     - test in telegram vk instagram facebook reddit
     - create screenshots for eng/ru opera chrome test in chrome
     - add donate button
 **/
 const NOTIFICATION_EXPIRES = 6000;
-let startTabId = null,
-    currentTab = null;
+let startTabId = null;
 
 /**
   The main PARENT context menu element
@@ -25,31 +22,44 @@ chrome.contextMenus.create({
 
 /**
   Infinite scrolling section
+  P.S. I tried to write a generator for them but seems like it's a complex waste
+**/
+
+/**
+  Infinite scroll UP
 **/
 chrome.contextMenus.create({
-  title: chrome.i18n.getMessage("context_menu_up_forever"),
+  title: chrome.i18n.getMessage("context_menu_up_infinite"),
   contexts:["all"],
   parentId: "parent",
   onclick: (info, tab) => {
     chrome.tabs.sendMessage(startTabId = tab.id, {
+      action: 'scroll',
       direction: 'up',
-      times: "infinite"
+      infinite: true
     });
   }
 });
 
+/**
+  Infinite scroll DOWN
+**/
 chrome.contextMenus.create({
-  title: chrome.i18n.getMessage("context_menu_down_forever"),
+  title: chrome.i18n.getMessage("context_menu_down_infinite"),
   contexts:["all"],
   parentId: "parent",
   onclick: (info, tab) => {
     chrome.tabs.sendMessage(startTabId = tab.id, {
-      direction: 'up',
-      times: "infinite"
+      action: 'scroll',
+      direction: 'down',
+      infinite: true
     });
   }
 });
 
+/**
+  Infinite scroll STOP button
+**/
 chrome.contextMenus.create({
   title: chrome.i18n.getMessage("context_menu_stop"),
   contexts:["all"],
@@ -61,71 +71,43 @@ chrome.contextMenus.create({
   }
 });
 
-///////////////////////////////////////////////////////////////////////////
-chrome.contextMenus.create({
-  type:'separator',
-  parentId: "parent"
-});
-///////////////////////////////////////////////////////////////////////////
+//////////////////////////////S E P A R A T O R ///////////////////////////////
+chrome.contextMenus.create( { type:'separator', parentId: "parent" } );
 
-chrome.contextMenus.create({
-  title: chrome.i18n.getMessage("context_menu_up_ten_times"),
-  contexts:["all"],
-  parentId: "parent",
-  onclick: (info, tab) => {
-    chrome.tabs.sendMessage(startTabId = tab.id, {
-      direction: 'up',
-      times: 10
-    });
-  }
-});
-
+/**
+  Scroll UP X times
+**/
 chrome.contextMenus.create({
   title: chrome.i18n.getMessage("context_menu_up_n_times"),
   contexts:["all"],
   parentId: "parent",
   onclick: (info, tab) => {
     chrome.tabs.sendMessage(startTabId = tab.id, {
-      direction: 'up',
-      times: 0
+      action: 'scroll',
+      direction: 'up'
     });
   }
 });
 
-///////////////////////////////////////////////////////////////////////////
-chrome.contextMenus.create({
-  type:'separator',
-  parentId: "parent"
-});
-///////////////////////////////////////////////////////////////////////////
-
+/**
+  Scroll DOWN X times
+**/
 chrome.contextMenus.create({
   title: chrome.i18n.getMessage("context_menu_down_n_times"),
   contexts:["all"],
   parentId: "parent",
   onclick: (info, tab) => {
     chrome.tabs.sendMessage(startTabId = tab.id, {
-      direction: 'down',
-      times: 0
+      action: 'scroll',
+      direction: 'down'
     });
   }
 });
 
-chrome.contextMenus.create({
-  title: chrome.i18n.getMessage("context_menu_down_ten_times"),
-  contexts:["all"],
-  parentId: "parent",
-  onclick: (info, tab) => {
-    chrome.tabs.sendMessage(startTabId = tab.id, {
-      direction: 'down',
-      times: 10
-    });
-  }
-});
 
 /**
   On message receive (usually from injected script to background ext script)
-  @param message - JSON object that contains at least type field to switch on it
+  @param object message - JSON object that contains at least type field to switch on it
 **/
 chrome.runtime.onMessage.addListener( message => {
 
@@ -133,7 +115,7 @@ chrome.runtime.onMessage.addListener( message => {
 
     case 'notification':
 
-      // close all notifications before creating new
+      // close all notifications before creating a new one
       chrome.notifications.getAll((items) => {
         if ( items ) {
           for (let key in items) {
@@ -142,7 +124,7 @@ chrome.runtime.onMessage.addListener( message => {
         }
       });
 
-      let notification = chrome.notifications.create(message.notification.id, {
+      chrome.notifications.create(message.notification.id, {
         type: "basic",
         title: message.notification.title,
         message: message.notification.text,

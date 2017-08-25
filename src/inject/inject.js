@@ -1,4 +1,11 @@
+// element which will be clicked while opening a context menu
 let clickedElement = null;
+
+// variable for infinite scrolling condition
+let stopScrolling = false;
+
+// scrolling function will repeat every (MS)
+const INTERVAL = 500;
 
 /**
   When user clicks somewhere on the page with Right mouse button - we save the
@@ -6,68 +13,59 @@ let clickedElement = null;
   inside)
 **/
 document.addEventListener("mousedown", function(event){
-    if(event.button == 2)
-        clickedElement = event.target;
+  if(event.button == 2)
+    clickedElement = event.target;
 }, false);
 
 /**
   The actual message listener when context menu is getting clicked
-  @param object message = contains properties of the clicked CONTEXT_MENU
-  element and action
+  @param object message = contains action and data from context menu element
 **/
 chrome.runtime.onMessage.addListener(message => {
 
-	if (message.action && message.action == 'stop') {
-		chrome.extension.sendMessage({
-			type: 'notification',
-			notification: {
-				id: 'info',
-				title: `Message`,
-				text: `Lets stop for a sec...`
-			}
-		});
-		return;
-	}
+  switch (message.action) {
 
-	// if its a number (default 10 or 0 for user prompt)
-	if ( !isNaN(message.times) ) {
+    // user wants to cancel infinite scroll
+    case 'stop':
+      stopScrolling = true;
+    break;
 
-		// if user selected N times
-		if ( message.times === 0 ) {
-			const userTimes = +prompt(chrome.i18n.getMessage("how_many_times"), 10);
-
-			// if user didn't click the cancel button
-			if(userTimes !== null)
-				beforeScroll(message.direction, userTimes);
-		}
-		// user chose default 10 times
-		else {
-			beforeScroll(message.direction, message.times);
-		}
-	}
-	// infinite times
-	else {
-		chrome.extension.sendMessage({
-			type: 'notification',
-			notification: {
-				id: 'info',
-				title: `Message`,
-				text: `Infinite scroll will be ready soon!`
-			}
-		});
-	}
+    // we are going to scroll by default
+    default:
+      prepareScroll(message);
+    break;
+  }
 });
+
+/**
+  Runs when message from context menu is received and we will scroll
+**/
+function prepareScroll (message) {
+
+  // infinite scrolling
+	if ( message.infinite ) {
+    beforeScroll(message.direction, -1);
+  }
+  // finite scrolling, ask user to enter number of repeats
+  else {
+    const total = +prompt(chrome.i18n.getMessage("how_many_times"), 5);
+
+		// if user clicked OK not CANCEL - run hook
+    if( total !== null )
+      beforeScroll(message.direction, total);
+  }
+}
 
 /**
   Hook that runs before scrolling and launches it after
 **/
-function beforeScroll(direction, times) {
+function beforeScroll(direction, total) {
 
-	// check if we are scrolling the instagram
-	detectInstagram();
+  // check if we are scrolling the instagram
+  detectInstagram();
 
-	// go go go!
-	scroll(direction, times, closestScrollable(clickedElement));
+  // go go go!
+  scroll(direction, total, closestScrollable(clickedElement));
 }
 
 /**
@@ -78,47 +76,63 @@ function beforeScroll(direction, times) {
   @param int previousMaxHeight = max height of an element found during recursion
   @return object {node, maxHeight} or {false, maxHeight} if nothing has been found
 **/
-function closestScrollable(element, previousMaxHeight = 0) {
-	let scrollableElement = element,
-			overflowY = window.getComputedStyle(element)['overflow-y'],
+function closestScrollable (element, previousMaxHeight = 0) {
+  let scrollableElement = element,
+      overflowY = window.getComputedStyle(element)['overflow-y'],
       maxHeight = element.clientHeight || 0;
 
-	if (previousMaxHeight > maxHeight) {
-		maxHeight = previousMaxHeight;
-	}
+  // if we have new maximum
+  if (previousMaxHeight > maxHeight) {
+  	maxHeight = previousMaxHeight;
+  }
 
 	// checking if current element has overflow / scroll
-	if (( overflowY === 'scroll' || overflowY === 'auto' ) &&
+  if (( overflowY === 'scroll' || overflowY === 'auto' ) &&
       ( scrollableElement.scrollHeight > scrollableElement.clientHeight ))
-		{
-			// we got THE ONE
-			return {
-				node: scrollableElement,
-				maxHeight: maxHeight
-			};
-		}
-		else {
+    {
+      // we got THE ONE
+      return {
+        node: scrollableElement,
+        maxHeight: maxHeight
+      };
 
-			// if he has a parent element - lets give him a try with recursion
-			if (scrollableElement.parentElement)
-				return closestScrollable(scrollableElement.parentElement, maxHeight);
-			else
-			// or let's just return the max height of elements and false instead of node
-				return {
-					node: false,
-					maxHeight: maxHeight
-				};
+    } else {
+
+      // if he has a parent element - lets give him a try with recursion
+      if (scrollableElement.parentElement)
+        return closestScrollable(scrollableElement.parentElement, maxHeight);
+      else
+        // or let's just return the max height of elements and false instead of node
+        return {
+          node: false,
+          maxHeight: maxHeight
+        };
 		}
 }
 
 /**
+  The actual scroll function
+  @param string direction "up/down"
+  @param integer total = how many times to scroll
+  @param node closestScrollable = item which will be scrolled
 **/
-function scroll(direction, total, closestScrollable) {
-	// number of times we should scroll up/down
-	total = parseInt(total) || 10;
+function scroll (direction, total, closestScrollable) {
+
+  let infinite = false;
+
+  let appendix = '';
+
+  // -1 if infinite
+  if ( total == -1 ) {
+    infinite = true;
+    total = 1;
+  } else {
+    appendix = '\nClick me to switch to that tab.';
+  }
 
 	// iterator
-	let doneTimes = 0;
+	let doneTimes = 0,
+      safeCounter = 0; // safe because unused in conditions
 
 	// interval to scroll again
 	const interval = setInterval(() => {
@@ -138,19 +152,32 @@ function scroll(direction, total, closestScrollable) {
 				window.scrollTo(0, getWindowHeight());
 		}
 
+    // increment iterator if loop is finite
+    if ( !infinite && doneTimes < total ) {
+      doneTimes++;
+    }
+
+    ++safeCounter;
+
 		// check if we are done with iterations
-		if (++doneTimes >= total) {
+		if ( doneTimes >= total || stopScrolling === true ) {
+
+      // reset the scroll switcher
+      stopScrolling = false;
+
 			clearInterval(interval);
+
+      // show user everything is ok
 			chrome.extension.sendMessage({
 				type: 'notification',
 				notification: {
 					id: 'scrolling',
 					title: `Job's done!`, // http://classic.battle.net/war3/images/orc/units/portraits/peon.gif
-					text: `I scrolled ${direction} (${total} times) and idle now. \nClick me to switch to that tab.`
+					text: `I scrolled ${direction} (${safeCounter} times) and idle now.` + appendix
 				}
 			});
 		}
-	}, 500);
+	}, INTERVAL);
 }
 
 /**
@@ -159,13 +186,19 @@ function scroll(direction, total, closestScrollable) {
 **/
 function detectInstagram() {
 	if (window.location.href.includes('instagram')) {
+
+    // find "load more" button
 		let anchor = _x(`//a[contains(@href, "${window.location.pathname}")]`);
-		if (anchor && anchor[0]) {
+
+    // click on it if it is found
+    if (anchor && anchor[0])
 			anchor[0].click();
-		}
 	}
 }
 
+/**
+  Obvious helper
+**/
 function getWindowHeight() {
   const body = document.body,
         html = document.documentElement;

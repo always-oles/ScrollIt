@@ -3,11 +3,11 @@
     "message":"Прокрутка"
   }
 
-  ,"context_menu_up_forever": {
+  ,"context_menu_up_infinite": {
     "message":"Вечная прокрутка вверх"
   }
 
-  ,"context_menu_down_forever": {
+  ,"context_menu_down_infinite": {
     "message":"Вечная прокрутка вниз"
   }
 
@@ -19,16 +19,9 @@
     "message":"Прокрутить вверх N раз"
   }
 
-  ,"context_menu_up_ten_times": {
-    "message":"Прокрутить вверх 10 раз"
-  }
 
   ,"context_menu_down_n_times": {
     "message":"Прокрутить вниз N раз"
-  }
-
-  ,"context_menu_down_ten_times": {
-    "message":"Прокрутить вниз 10 раз"
   }
 
   ,"how_many_times": {
