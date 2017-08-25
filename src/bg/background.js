@@ -1,5 +1,6 @@
 /**
   TODO:
+    - add a "reached the end of the document" detection
     - replace all text with translations
     - write a readme
     - test in telegram vk instagram facebook reddit
