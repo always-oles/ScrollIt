@@ -1,5 +1,6 @@
 html, body {
   padding: 0px;
+  font-size: 1.2em;
 }
 
 .container {
@@ -8,6 +9,8 @@ html, body {
   justify-content: center;
 }
 
-.center {
-
+.main {
+  max-width: 40%;
+  padding: 20px;
+  text-align: center;
 }

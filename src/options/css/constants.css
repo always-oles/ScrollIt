@@ -1,0 +1,25 @@
+body, a{
+  color: #1e76db;
+}
+
+.donate-form {
+  background: #eee;
+  border: 1px dashed #ccc;
+  margin: 20px 0px;
+  padding: 10px;
+  text-align: center;
+}
+
+.donate-form .message {
+  display: block;
+  margin: 10px 0px;
+}
+
+.profile-container {
+  text-align: center;
+}
+
+.profile {
+  text-decoration: none;
+  border-bottom: 1px dashed #207ce5;
+}

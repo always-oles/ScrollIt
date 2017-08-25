@@ -17,7 +17,7 @@
   "options_page": "src/options/index.html",
   "browser_action": {
     "default_icon": "icons/icon48.png",
-    "default_popup": "src/options/index.html"
+    "default_popup": "src/options/browser_action.html"
   },
   "permissions": [
     "contextMenus",

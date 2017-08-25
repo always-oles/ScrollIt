@@ -19,7 +19,6 @@
     "message":"Прокрутить вверх N раз"
   }
 
-
   ,"context_menu_down_n_times": {
     "message":"Прокрутить вниз N раз"
   }
@@ -28,11 +27,15 @@
     "message":"Сколько раз прокрутить?"
   }
 
-  ,"context_menu_down_end": {
-    "message":"Прокрутить вниз до конца"
-  }
-
   ,"extension_description": {
     "message": "Расширение для прокрутки страницы на сайтах с технологией lazy-load (подгрузкой новых записей по мере прокрутки страницы вниз)"
+  }
+
+  ,"browser_action": {
+    "message": "To use this plugin - just press your right mouse button anywhere on the page and select a scrolling option"
+  }
+
+  ,"donate": {
+    "message": "If you like this app - you can support author by donate (app is free and open source)"
   }
 }
