@@ -1,6 +1,6 @@
 {
-  "name": "Scroll It!",
-  "version": "0.0.1",
+  "name": "Scroll it!",
+  "version": "1.0.0",
   "manifest_version": 2,
   "description": "__MSG_extension_description__",
   "homepage_url": "https://github.com/always-oles/ScrollIt",
@@ -14,14 +14,12 @@
     "scripts": ["src/bg/background.js"],
     "persistent": true
   },
-  "options_page": "src/options_custom/index.html",
-  "page_action": {
-    "default_icon": "icons/icon19.png",
-    "default_title": "page action demo",
-    "default_popup": "src/page_action/page_action.html"
+  "options_page": "src/options/index.html",
+  "browser_action": {
+    "default_icon": "icons/icon48.png",
+    "default_popup": "src/options/index.html"
   },
   "permissions": [
-    "bookmarks",
     "contextMenus",
     "notifications"
   ],

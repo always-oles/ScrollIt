@@ -1,12 +1,9 @@
 /**
   TODO:
     - replace all text with translations
-    - infinite scroll
     - write a readme
-    - description
     - test in telegram vk instagram facebook reddit
     - create screenshots for eng/ru opera chrome test in chrome
-    - add donate button
 **/
 const NOTIFICATION_EXPIRES = 6000;
 let startTabId = null;

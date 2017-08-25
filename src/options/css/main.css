@@ -1,0 +1,13 @@
+html, body {
+  padding: 0px;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.center {
+
+}
