@@ -1,8 +1,9 @@
 // element which will be clicked while opening a context menu
 let clickedElement = null;
 
-// variable for infinite scrolling condition
-let stopScrolling = false;
+// variables for infinite scrolling conditions
+let stopScrolling = false,
+    isRunning = false;
 
 // scrolling function will repeat every (MS)
 const INTERVAL = 500;
@@ -27,7 +28,11 @@ chrome.runtime.onMessage.addListener(message => {
 
     // user wants to cancel infinite scroll
     case 'stop':
-      stopScrolling = true;
+
+      // do not stop scrolling if it's not running
+      if (isRunning)
+        stopScrolling = true;
+
     break;
 
     // we are going to scroll by default
@@ -137,6 +142,8 @@ function scroll (direction, total, closestScrollable) {
 	// interval to scroll again
 	const interval = setInterval(() => {
 
+    isRunning = true;
+
 		// if we found an element that can be scrolled
 		if (closestScrollable.node) {
 			if (direction == "up")
@@ -164,6 +171,8 @@ function scroll (direction, total, closestScrollable) {
 
       // reset the scroll switcher
       stopScrolling = false;
+
+      isRunning = false;
 
 			clearInterval(interval);
 

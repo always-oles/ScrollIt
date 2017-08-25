@@ -57,6 +57,9 @@ chrome.contextMenus.create({
   }
 });
 
+//////////////////////////////S E P A R A T O R ///////////////////////
+chrome.contextMenus.create( { type:'separator', parentId: "parent" } );
+
 /**
   Infinite scroll STOP button
 **/
@@ -71,7 +74,7 @@ chrome.contextMenus.create({
   }
 });
 
-//////////////////////////////S E P A R A T O R ///////////////////////////////
+//////////////////////////////S E P A R A T O R ///////////////////////
 chrome.contextMenus.create( { type:'separator', parentId: "parent" } );
 
 /**
