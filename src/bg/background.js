@@ -141,5 +141,6 @@ chrome.runtime.onMessage.addListener( message => {
       // auto close notification
       setTimeout( () => chrome.notifications.clear(message.notification.id), NOTIFICATION_EXPIRES);
     break;
+
   }
 });
