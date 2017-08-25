@@ -26,15 +26,12 @@ document.addEventListener("mousedown", function(event){
 chrome.runtime.onMessage.addListener(message => {
 
   switch (message.action) {
-
     // user wants to cancel infinite scroll
     case 'stop':
-
       // do not stop scrolling if it's not running
       if (isRunning) {
         stopScrolling = true;
       }
-
     break;
 
     // we are going to scroll by default
@@ -42,6 +39,7 @@ chrome.runtime.onMessage.addListener(message => {
       prepareScroll(message);
     break;
   }
+
 });
 
 /**
@@ -170,11 +168,8 @@ function scroll (direction, total, closestScrollable) {
     // check if we are done with iterations
     if ( doneTimes >= total || stopScrolling === true ) {
 
-      // reset the scroll switcher
       stopScrolling = false;
-
       isRunning = false;
-
       clearInterval(interval);
 
       // show user everything is ok
