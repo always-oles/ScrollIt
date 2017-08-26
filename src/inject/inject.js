@@ -6,7 +6,9 @@ let stopScrolling = false,
     isRunning = false;
 
 // scrolling function will repeat every (MS)
-const INTERVAL = 500;
+const INTERVAL = 400;
+
+// retries before it decides it's stuck
 const STUCK_RETRIES = 30;
 
 // variables for stuck feature checking
