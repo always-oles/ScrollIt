@@ -21,7 +21,9 @@
   },
   "permissions": [
     "contextMenus",
-    "notifications"
+    "notifications",
+    "http://*/*",
+    "https://*/*"
   ],
   "content_scripts": [
     {

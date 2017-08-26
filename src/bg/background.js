@@ -3,7 +3,8 @@
     - add a "reached the end of the document" detection
     - replace all text with translations
     - write a readme
-    - test in telegram vk instagram facebook reddit
+    - test in telegram vk instagram facebook reddit youtube comments
+    - retina icons
     - create screenshots for eng/ru opera chrome test in chrome
 **/
 const NOTIFICATION_EXPIRES = 6000;
@@ -100,6 +101,29 @@ chrome.contextMenus.create({
   }
 });
 
+/**
+  When user selects another tab - we shold be sure that our script is injected
+**/
+chrome.tabs.onSelectionChanged.addListener( newTabId => {
+
+  // getting the full info about that tab
+  chrome.tabs.get(newTabId, (newTab) => {
+
+    // if it's not a service url
+    if (newTab.url && newTab.url.indexOf("chrome://") != 0) {
+
+      // check if we have access to injected script
+      chrome.tabs.sendMessage(newTab.id, { action: 'checkInjected' }, response => {
+
+        // if it gives undefined = not injected yet. set injected
+        if (!response) {
+          chrome.tabs.executeScript(newTab.id, { file: 'src/inject/inject.js' });
+          chrome.tabs.sendMessage(newTab.id, { action: 'setInjected' });
+        }
+      });
+    }
+  });
+});
 
 /**
   On message receive (usually from injected script to background ext script)

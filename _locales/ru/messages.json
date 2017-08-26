@@ -32,10 +32,15 @@
   }
 
   ,"browser_action": {
-    "message": "To use this plugin - just press your right mouse button anywhere on the page and select a scrolling option"
+    "message": "Чтобы использовать это расширение - нажмите правую кнопку мыши где-нибудь на странице и выберите параметры прокрутки."
   }
 
   ,"donate": {
-    "message": "If you like this app - you can support author by donate (app is free and open source)"
+    "message": "Если вам нравится это приложение - вы можете поддержать автора пожертвованием (приложение бесплатное и имеет открытый исходный код)"
   }
+
+  ,"github_page": {
+    "message": "Страница на Github"
+  }
+
 }

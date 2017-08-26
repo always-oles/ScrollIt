@@ -8,6 +8,8 @@ let stopScrolling = false,
 // scrolling function will repeat every (MS)
 const INTERVAL = 500;
 
+let injected = false;
+
 /**
   When user clicks somewhere on the page with Right mouse button - we save the
   clicked element in global variable(we will need it if user decides to scroll
@@ -23,8 +25,7 @@ document.addEventListener("mousedown", function(event){
   The actual message listener when context menu is getting clicked
   @param object message = contains action and data from context menu element
 **/
-chrome.runtime.onMessage.addListener(message => {
-
+chrome.runtime.onMessage.addListener( (message, sender, sendResponse) => {
   switch (message.action) {
     // user wants to cancel infinite scroll
     case 'stop':
@@ -32,6 +33,14 @@ chrome.runtime.onMessage.addListener(message => {
       if (isRunning) {
         stopScrolling = true;
       }
+    break;
+
+    case 'setInjected':
+      injected = true;
+    break;
+
+    case 'checkInjected':
+      sendResponse(true);
     break;
 
     // we are going to scroll by default

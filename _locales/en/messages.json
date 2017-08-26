@@ -1,9 +1,45 @@
 {
-  "description": {
-    "message":"Hello"
+  "context_menu_main": {
+    "message":"Scrolling"
+  }
+
+  ,"context_menu_up_infinite": {
+    "message":"Infinite scrolling up"
+  }
+
+  ,"context_menu_down_infinite": {
+    "message":"Infinite scrolling down"
+  }
+
+  ,"context_menu_stop": {
+    "message":"Stop scrolling"
+  }
+
+  ,"context_menu_up_n_times": {
+    "message":"Scroll up N times"
+  }
+
+  ,"context_menu_down_n_times": {
+    "message":"Scroll down N times"
+  }
+
+  ,"how_many_times": {
+    "message":"How many times should I scroll?"
   }
 
   ,"extension_description": {
-    "message": "Scroll any website with a lazy loading feature (when new items appear on page upon scrolling to the bottom)"
+    "message": "Extension for scrolling websites with a lazy-load technology used (when you scroll up/down to get new records/items/news)"
+  }
+
+  ,"browser_action": {
+    "message": "To use this extension - just press your right mouse button anywhere on the page and select a scrolling option"
+  }
+
+  ,"donate": {
+    "message": "If you like this app - you can support author by donate (app is free and open source)"
+  }
+
+  ,"github_page": {
+    "message": "Github project page"
   }
 }
