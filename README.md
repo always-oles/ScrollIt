@@ -10,7 +10,8 @@ so...
 
 ## Languages
 Currently localized for **english** and **russian** languages, feel free to add
-more (located in \_locales/lang-code/messages.json)
+more 
+` (located in \_locales/lang-code/messages.json) `
 
 ## Tested on websites (sections)
 Messengers:  
