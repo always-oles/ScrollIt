@@ -4,13 +4,6 @@
     - write a readme
     - create screenshots for eng/ru opera chrome test in chrome
     - test on english
-
-    telegram +
-    reddit comments +
-    facebook news +
-    instagram +
-    youtube suggested videos + comments section
-    vkontakte news + dialogues
 **/
 const NOTIFICATION_EXPIRES = 6000;
 let startTabId = null;
