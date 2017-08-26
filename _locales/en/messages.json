@@ -28,7 +28,7 @@
   }
 
   ,"extension_description": {
-    "message": "Extension for scrolling websites with a lazy-load technology used (when you scroll up/down to get new records/items/news)"
+    "message": "Extension for scrolling websites with a lazy-load feature used (when you scroll up/down to get new records/items/news)"
   }
 
   ,"browser_action": {
