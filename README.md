@@ -10,7 +10,12 @@ so...
 
 ## Languages
 Currently localized for **english** and **russian** languages, feel free to add
+<<<<<<< HEAD
 more (located in *\_locales/lang-code/messages.json*)
+=======
+more  
+` (located in \_locales/lang-code/messages.json) `
+>>>>>>> 88a06e794af4e476433c5dddaa6295e133eefe80
 
 ## Tested on websites (sections)
 Messengers:  
@@ -51,11 +56,17 @@ and *scrolling option* (infinite / N times).
 
 *Feel free to use this project as a boilerplate for your extension.*
 
+<<<<<<< HEAD
 ## Contacts
 Author is Oles Bolotniuk (bolotniuk.oles@gmail.com)  
 
+=======
+>>>>>>> 88a06e794af4e476433c5dddaa6295e133eefe80
 :screenshots:  
 
 link to chrome webshop:  
 link to opera webshop:  
+<<<<<<< HEAD
 link to direct downloads:  
+=======
+>>>>>>> 88a06e794af4e476433c5dddaa6295e133eefe80
