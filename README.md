@@ -32,18 +32,19 @@ extensions, feel free to install it manually by links given in contacts section
 **A:** Try to click in another place or reload the page (browser update is also
 recommended)  
 
-**Q:** *Why did scrolling stop ? / Why it's stuck?*  
-**A:** Lazy loading is tricky feature and new items may not appear because of some
-website server issue or slow connection (server just didn't give you the new data).
+**Q:** *Why did scrolling stop ? Why it's stuck?*  
+**A:** Lazy loading is a tricky feature and new items may not appear because of
+website issues   or slow connection (server just didn't give you the new data).
 Try running it again  
 
 **Q:** *This extension works well on some websites and doens't work on another*  
-**A:** If it doens't work on some popular website - send me a letter about this  
+**A:** If it doens't work on some popular website - send me a letter about it  
 
-## How to use?
-Install extension from webshop or from files
-*manual for installing extensions from files: https://www.howtogeek.com/120743/how-to-install-extensions-from-outside-the-chrome-web-store/*
+## How to install
+Install extension from webshop or manually from files  
+*manual for installing extensions from files:   https://www.howtogeek.com/120743/how-to-install-extensions-from-outside-the-chrome-web-store/*
 
+## How to use
 When you have it done and **installed** - open a website with lazy-loading
 feature, press right mouse button anywhere on the page (desirable inside a place
 that has to be scrolled) - select *scrolling* in **context menu**
