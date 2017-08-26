@@ -42,4 +42,24 @@
   ,"github_page": {
     "message": "Github project page"
   }
+
+  ,"click_to_switch": {
+    "message": "Click me to switch to that tab."
+  }
+
+  ,"up": {
+    "message": "up"
+  }
+
+  ,"down": {
+    "message": "down"
+  }
+
+  ,"jobs_done": {
+    "message": "Job's done!"
+  }
+
+  ,"scrolling_result": {
+    "message": "I scrolled $1 ($2 times) and idle now."
+  }
 }

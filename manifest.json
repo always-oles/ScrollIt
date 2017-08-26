@@ -11,12 +11,15 @@
   },
   "default_locale": "en",
   "background": {
-    "scripts": ["src/bg/background.js"],
+    "scripts": ["src/background/background.js"],
     "persistent": true
   },
   "options_page": "src/options/index.html",
   "browser_action": {
-    "default_icon": "icons/icon48.png",
+    "default_icon": {
+      "19": "icons/icon19.png",
+      "38": "icons/icon38.png"
+    },
     "default_popup": "src/options/browser_action.html"
   },
   "permissions": [
@@ -28,7 +31,10 @@
   "content_scripts": [
     {
       "matches": ["*://*/*"],
-      "js": ["src/inject/inject.js"],
+      "js": [
+        "src/inject/helpers.js",
+        "src/inject/inject.js"
+      ],
       "run_at": "document_end"
     }
   ]

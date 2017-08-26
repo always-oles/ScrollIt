@@ -76,8 +76,8 @@ function prepareScroll (message) {
 **/
 function beforeScroll(direction, total) {
 
-  // check if we are scrolling the instagram
-  detectInstagram();
+  // check if we are scrolling the instagram, we need it once
+  helpers.detectInstagram();
 
   // go go go!
   scroll(direction, total, closestScrollable(clickedElement));
@@ -141,7 +141,7 @@ function scroll (direction, total, closestScrollable) {
     infinite = true;
     total = 1;
   } else {
-    appendix = '\nClick me to switch to that tab.';
+    appendix = '\n' + chrome.i18n.getMessage("click_to_switch");
   }
 
   // iterator
@@ -150,6 +150,10 @@ function scroll (direction, total, closestScrollable) {
 
   // interval to scroll again
   const interval = setInterval(() => {
+
+    // we need to these websites "load more" button every iteration
+    helpers.detectReddit();
+    helpers.detectYoutube();
 
     ++safeCounter;
     isRunning = true;
@@ -164,9 +168,9 @@ function scroll (direction, total, closestScrollable) {
     // try to use window by default
     else {
       if (direction == "up")
-        window.scrollTo(0, -getWindowHeight());
+        window.scrollTo(0, -helpers.getWindowHeight());
       else
-        window.scrollTo(0, getWindowHeight());
+        window.scrollTo(0, helpers.getWindowHeight());
     }
 
     // increment iterator if loop is finite
@@ -186,57 +190,10 @@ function scroll (direction, total, closestScrollable) {
         type: 'notification',
         notification: {
           id: 'scrolling',
-          title: `Job's done!`, // http://classic.battle.net/war3/images/orc/units/portraits/peon.gif
-          text: `I scrolled ${direction} (${safeCounter} times) and idle now.` + appendix
+          title: chrome.i18n.getMessage("jobs_done"), // http://classic.battle.net/war3/images/orc/units/portraits/peon.gif
+          text: chrome.i18n.getMessage("scrolling_result", [ chrome.i18n.getMessage(direction), safeCounter]) + appendix
         }
       });
     }
   }, INTERVAL);
-}
-
-/**
-  Check if current tab is an instagram website - click on "load more" button
-  to scroll freely
-**/
-function detectInstagram() {
-  if (window.location.href.includes('instagram')) {
-
-    // find "load more" button
-    let anchor = _x(`//a[contains(@href, "${window.location.pathname}")]`);
-
-    // click on it if it is found
-    if (anchor && anchor[0]) {
-      anchor[0].click();
-    }
-  }
-}
-
-/**
-  Obvious helper
-**/
-function getWindowHeight() {
-  const body = document.body,
-        html = document.documentElement;
-
-  return Math.max(
-    body.scrollHeight, body.offsetHeight, html.clientHeight,
-    html.scrollHeight, html.offsetHeight
-  );
-}
-
-/**
-  Xpath helper
-  @param string STR_XPATH = the actual xpath of searched element(s)
-  @credits Thanks to https://stackoverflow.com/a/14669479/3687408
-**/
-function _x(STR_XPATH) {
-  let xresult = document.evaluate(STR_XPATH, document, null, XPathResult.ANY_TYPE, null),
-      xnodes = [],
-      xres;
-
-  while (xres = xresult.iterateNext()) {
-    xnodes.push(xres);
-  }
-
-  return xnodes;
 }

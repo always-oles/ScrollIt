@@ -43,4 +43,23 @@
     "message": "Страница на Github"
   }
 
+  ,"click_to_switch": {
+    "message": "Нажмите здесь, чтобы переключиться на вкладку."
+  }
+
+  ,"up": {
+    "message": "вверх"
+  }
+
+  ,"down": {
+    "message": "вниз"
+  }
+
+  ,"jobs_done": {
+    "message": "Готово!"
+  }
+
+  ,"scrolling_result": {
+    "message": "Я прокрутил $1 (всего раз: $2) и теперь отдыхаю."
+  }
 }

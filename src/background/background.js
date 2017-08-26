@@ -1,11 +1,16 @@
 /**
   TODO:
     - add a "reached the end of the document" detection
-    - replace all text with translations
     - write a readme
-    - test in telegram vk instagram facebook reddit youtube comments
-    - retina icons
     - create screenshots for eng/ru opera chrome test in chrome
+    - test on english
+
+    telegram +
+    reddit comments +
+    facebook news +
+    instagram +
+    youtube suggested videos + comments section
+    vkontakte news + dialogues
 **/
 const NOTIFICATION_EXPIRES = 6000;
 let startTabId = null;
@@ -117,6 +122,7 @@ chrome.tabs.onSelectionChanged.addListener( newTabId => {
 
         // if it gives undefined = not injected yet. set injected
         if (!response) {
+          chrome.tabs.executeScript(newTab.id, { file: 'src/inject/helpers.js' });
           chrome.tabs.executeScript(newTab.id, { file: 'src/inject/inject.js' });
           chrome.tabs.sendMessage(newTab.id, { action: 'setInjected' });
         }
