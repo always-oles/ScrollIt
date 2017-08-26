@@ -10,7 +10,7 @@ so...
 
 ## Languages
 Currently localized for **english** and **russian** languages, feel free to add
-more 
+more  
 ` (located in \_locales/lang-code/messages.json) `
 
 ## Tested on websites (sections)
@@ -35,7 +35,7 @@ and *scrolling option* (infinite / N times).
 
 *Feel free to use this project as a boilerplate for your extension.*
 
-:screenshots:
+:screenshots:  
 
-link to chrome webshop:
-link to opera webshop:
+link to chrome webshop:  
+link to opera webshop:  
