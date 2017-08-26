@@ -1,9 +1,7 @@
 /**
   TODO:
     - add a "reached the end of the document" detection
-    - write a readme
     - create screenshots for eng/ru opera chrome test in chrome
-    - test on english
 **/
 const NOTIFICATION_EXPIRES = 6000;
 let startTabId = null;
