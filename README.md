@@ -9,14 +9,15 @@ to scroll up and down, seemed like there was no existing extension for that yet
 so...
 
 ## Tested on websites (sections)
-  Messengers:  
-    Telegram  
-    Vkontakte (news, dialogues)  
-  Others:  
-    Instagram  
-    Youtube (suggested videos, comments)  
-    Reddit (comments)  
-    Facebook (news)  
+Messengers:  
+* Telegram  
+* Vkontakte (news, dialogues)  
+  
+Others:  
+* Instagram  
+* Youtube (suggested videos, comments)  
+* Reddit (comments)  
+* Facebook (news)  
   
 ## How to use?
 Install extension from webshop or from files
