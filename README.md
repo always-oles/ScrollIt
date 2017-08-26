@@ -8,22 +8,26 @@ messengers like Telegram/Vkontakte to see old messages. So I needed an easy way
 to scroll up and down, seemed like there was no existing extension for that yet
 so...
 
+## Languages
+Currently localized for **english** and **russian** languages, feel free to add
+more (located in \_locales/lang-code/messages.json)
+
 ## Tested on websites (sections)
 Messengers:  
 * Telegram  
 * Vkontakte (news, dialogues)  
-  
+
 Others:  
 * Instagram  
 * Youtube (suggested videos, comments)  
 * Reddit (comments)  
 * Facebook (news)  
-  
+
 ## How to use?
 Install extension from webshop or from files
 *manual for installing extensions from files: https://www.howtogeek.com/120743/how-to-install-extensions-from-outside-the-chrome-web-store/*
 
-When you have it done and installed - open desirable website with lazy-loading
+When you have it done and **installed** - open a website with lazy-loading
 feature, press right mouse button anywhere on the page (desirable inside a place
 that has to be scrolled) - select *scrolling* in **context menu**
 and *scrolling option* (infinite / N times).
