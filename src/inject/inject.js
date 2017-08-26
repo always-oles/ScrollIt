@@ -7,8 +7,17 @@ let stopScrolling = false,
 
 // scrolling function will repeat every (MS)
 const INTERVAL = 500;
+const STUCK_RETRIES = 30;
 
+// variables for stuck feature checking
+let previousMaxElemHeight = 0,
+    stuckCounter = 0;
+
+// if this script was already injected in the webpage or not
 let injected = false;
+
+// global variable for the main loop
+let interval = null;
 
 /**
   When user clicks somewhere on the page with Right mouse button - we save the
@@ -88,17 +97,21 @@ function beforeScroll(direction, total) {
   go through all parents to the last <html> node and exit then
   If succeed: return node and max height of all these nodes
   @param node element = right-clicked element while opening a context menu
+  @param node previousMaxElement = save whitch element has the max height
   @param int previousMaxHeight = max height of an element found during recursion
   @return object {node, maxHeight} or {false, maxHeight} if nothing has been found
 **/
-function closestScrollable (element, previousMaxHeight = 0) {
+function closestScrollable (element, previousMaxElement, previousMaxHeight = 0) {
   let scrollableElement = element,
       overflowY = window.getComputedStyle(element)['overflow-y'],
-      maxHeight = element.clientHeight || 0;
+      maxHeight = element.clientHeight || 0,
+      maxElement = element;
+
 
   // if we have new maximum
   if (previousMaxHeight > maxHeight) {
-    maxHeight = previousMaxHeight;
+    maxHeight   = previousMaxHeight;
+    maxElement  = previousMaxElement;
   }
 
 	// checking if current element has overflow / scroll
@@ -108,17 +121,19 @@ function closestScrollable (element, previousMaxHeight = 0) {
       // we got THE ONE
       return {
         node: scrollableElement,
-        maxHeight: maxHeight
+        maxHeight: maxHeight,
+        maxElement: maxElement
       };
     } else {
       // if he has a parent element - lets give him a try with recursion
       if (scrollableElement.parentElement) {
-        return closestScrollable(scrollableElement.parentElement, maxHeight);
+        return closestScrollable(scrollableElement.parentElement, maxElement, maxHeight);
       } else {
         // or let's just return the max height of elements and false instead of node
         return {
           node: false,
-          maxHeight: maxHeight
+          maxHeight: maxHeight,
+          maxElement: maxElement
         };
       }
     }
@@ -149,7 +164,7 @@ function scroll (direction, total, closestScrollable) {
       safeCounter = 0; // safe because unused in conditions
 
   // interval to scroll again
-  const interval = setInterval(() => {
+  interval = setInterval(() => {
 
     // we need to these websites "load more" button every iteration
     helpers.detectReddit();
@@ -160,10 +175,33 @@ function scroll (direction, total, closestScrollable) {
 
     // if we found an element that can be scrolled
     if (closestScrollable.node) {
+
+      // get current height
+      previousMaxElemHeight = closestScrollable.maxElement.clientHeight;
+
       if (direction == "up")
         closestScrollable.node.scrollTop -= closestScrollable.maxHeight;
       else
         closestScrollable.node.scrollTop += closestScrollable.maxHeight;
+
+      // check if this is getting bigger
+      if (closestScrollable.maxElement.clientHeight == previousMaxElemHeight) {
+
+        // we are stuck
+        if (++stuckCounter >= STUCK_RETRIES) {
+
+          finishScrolling();
+
+          chrome.extension.sendMessage({
+            type: 'notification',
+            notification: {
+              id: 'scrolling',
+              title: chrome.i18n.getMessage("stuck_header"),
+              text: chrome.i18n.getMessage("stuck", [safeCounter]) + appendix
+            }
+          });
+        }
+      }
     }
     // try to use window by default
     else {
@@ -181,9 +219,7 @@ function scroll (direction, total, closestScrollable) {
     // check if we are done with iterations
     if ( doneTimes >= total || stopScrolling === true ) {
 
-      stopScrolling = false;
-      isRunning = false;
-      clearInterval(interval);
+      finishScrolling();
 
       // show user everything is ok
       chrome.extension.sendMessage({
@@ -196,4 +232,15 @@ function scroll (direction, total, closestScrollable) {
       });
     }
   }, INTERVAL);
+}
+
+/**
+  A helper to reset variables
+**/
+function finishScrolling() {
+  stopScrolling = false;
+  isRunning = false;
+  stuckCounter = 0;
+  previousMaxElemHeight = 0;
+  clearInterval(interval);
 }

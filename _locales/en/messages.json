@@ -62,4 +62,12 @@
   ,"scrolling_result": {
     "message": "I scrolled $1 ($2 times) and idle now."
   }
+
+  ,"stuck_header": {
+    "message": "Hmm..."
+  }
+
+  ,"stuck": {
+    "message": "Seems like I was stuck after $1 scrolls, that's why I stopped scrolling."
+  }
 }

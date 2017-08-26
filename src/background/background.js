@@ -1,6 +1,5 @@
 /**
   TODO:
-    - add a "reached the end of the document" detection
     - create screenshots for eng/ru opera chrome test in chrome
 **/
 const NOTIFICATION_EXPIRES = 6000;
