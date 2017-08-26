@@ -24,20 +24,20 @@ Others:
 * Facebook (news)  
 
 ## FAQ
-**Q:** Where should I install it from?  
+**Q:** *Where should I install it from?*  
 **A:** From official chrome/opera webstores, links are below. If there is no such
 extensions, feel free to install it manually by links given in contacts section  
 
-**Q:** I clicked on infinite scrolling and nothing happens  
+**Q:** *I clicked on infinite scrolling and nothing happens*  
 **A:** Try to click in another place or reload the page (browser update is also
 recommended)  
 
-**Q:** Why did scrolling stop?  
+**Q:** *Why did scrolling stop?*  
 **A:** Lazy loading is tricky feature and new items may not appear because of some
 website server issue or connection troubles, try running it again after reloading
 the page  
 
-**Q:** This extension works well on some websites and doens't work on another  
+**Q:** *This extension works well on some websites and doens't work on another*  
 **A:** If it doens't work on some popular website - send me a letter about this  
 
 ## How to use?
