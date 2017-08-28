@@ -8,6 +8,12 @@ messengers like Telegram/Vkontakte to see old messages. So I needed an easy way
 to scroll up and down, seemed like there was no existing extension for that yet
 so...
 
+## Showcase (few screenshots, more below @gif showcase section)
+#### This is how extension context menu looks like:  
+![Context menu screenshot](http://95.85.45.32/assets/context-menu-en.jpg)  
+#### Message after some job is done:  
+![Browser message](http://95.85.45.32/assets/message-en.jpg)  
+
 ## Languages
 Currently localized for **english** and **russian** languages, feel free to add more  
 ` located in _locales/lang-code/messages.json`  
@@ -56,7 +62,9 @@ and *scrolling option* (infinite / N times).
 ## Contacts
 Author is Oles Bolotniuk (bolotniuk.oles@gmail.com)  
 
-:screenshots:  
+## Gif showcase
+![Twitter demo](http://95.85.45.32/assets/twitter-infinite.gif)
+![Instagram demo](http://95.85.45.32/assets/instagram-finite.gif)
 
 link to chrome webshop:  
 link to opera webshop:  
