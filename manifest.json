@@ -1,6 +1,6 @@
 {
   "name": "Scroll it!",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "manifest_version": 2,
   "description": "__MSG_extension_description__",
   "homepage_url": "https://github.com/always-oles/ScrollIt",
@@ -23,6 +23,7 @@
     "default_popup": "src/options/browser_action.html"
   },
   "permissions": [
+    "tabs",
     "contextMenus",
     "notifications",
     "http://*/*",

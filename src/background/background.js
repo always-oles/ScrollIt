@@ -1,7 +1,3 @@
-/**
-  TODO:
-    - create screenshots for eng/ru opera chrome test in chrome
-**/
 const NOTIFICATION_EXPIRES = 6000;
 let startTabId = null;
 
@@ -105,7 +101,7 @@ chrome.tabs.onSelectionChanged.addListener( newTabId => {
   chrome.tabs.get(newTabId, (newTab) => {
 
     // if it's not a service url
-    if (newTab.url && newTab.url.indexOf("chrome://") != 0) {
+    if (newTab.url && newTab.url.indexOf("chrome://") != 0 && newTab.url.indexOf("chrome-extension") != 0) {
 
       // check if we have access to injected script
       chrome.tabs.sendMessage(newTab.id, { action: 'checkInjected' }, response => {

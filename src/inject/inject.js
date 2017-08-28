@@ -13,6 +13,7 @@ const STUCK_RETRIES = 30;
 
 // variables for stuck feature checking
 let previousMaxElemHeight = 0,
+    previousWindowHeight = 0,
     stuckCounter = 0;
 
 // if this script was already injected in the webpage or not
@@ -191,26 +192,34 @@ function scroll (direction, total, closestScrollable) {
 
         // we are stuck
         if (++stuckCounter >= STUCK_RETRIES) {
-
           finishScrolling();
-
-          chrome.extension.sendMessage({
-            type: 'notification',
-            notification: {
-              id: 'scrolling',
-              title: chrome.i18n.getMessage("stuck_header"),
-              text: chrome.i18n.getMessage("stuck", [safeCounter]) + appendix
-            }
-          });
+          imStuck(safeCounter, appendix);
         }
+      } else {
+        // reset stuck counter if moving
+        stuckCounter = 0;
       }
     }
-    // try to use window by default
+    // scrolling window by default
     else {
+
+      previousWindowHeight = helpers.getWindowHeight();
+
       if (direction == "up")
         window.scrollTo(0, -helpers.getWindowHeight());
       else
         window.scrollTo(0, helpers.getWindowHeight());
+
+        // check for stucking
+        if ( helpers.getWindowHeight() == previousWindowHeight ) {
+          if (++stuckCounter >= STUCK_RETRIES) {
+            finishScrolling();
+            imStuck(safeCounter, appendix);
+          }
+        } else {
+          // reset stuck counter if moving
+          stuckCounter = 0;
+        }
     }
 
     // increment iterator if loop is finite
@@ -237,6 +246,20 @@ function scroll (direction, total, closestScrollable) {
 }
 
 /**
+  Sends user a message that loop is stuck
+**/
+function imStuck(safeCounter, appendix) {
+  chrome.extension.sendMessage({
+    type: 'notification',
+    notification: {
+      id: 'scrolling',
+      title: chrome.i18n.getMessage("stuck_header"),
+      text: chrome.i18n.getMessage("stuck", [safeCounter]) + appendix
+    }
+  });
+}
+
+/**
   A helper to reset variables
 **/
 function finishScrolling() {
@@ -244,5 +267,6 @@ function finishScrolling() {
   isRunning = false;
   stuckCounter = 0;
   previousMaxElemHeight = 0;
+  previousWindowHeight = 0;
   clearInterval(interval);
 }
