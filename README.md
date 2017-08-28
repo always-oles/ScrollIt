@@ -2,11 +2,7 @@
 ### A Chrome/Opera extension for scrolling a lazy-loading content on any website.
 
 ## Basic idea
-Today lots of websites are using **lazy-loading** technique to show new items/
-news/records/ upon scrolling down. Also you're able to scroll up in lots of
-messengers like Telegram/Vkontakte to see old messages. So I needed an easy way
-to scroll up and down, seemed like there was no existing extension for that yet
-so...
+Today lots of websites are using lazy-loading technique to show new items/ news/records/ upon scrolling down. Also you're able to scroll up in lots of messengers like Telegram/Vkontakte to see old messages. So I needed an easy way to scroll up and down, seemed like there was no such extension on the market so I decided to create it.  
 
 ## Showcase (few screenshots, more below @gif showcase section)
 #### This is how extension context menu looks like:  
