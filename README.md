@@ -59,12 +59,12 @@ and *scrolling option* (infinite / N times).
 
 *Feel free to use this project as a boilerplate for your extension.*
 
-## Contacts
-Author is Oles Bolotniuk (bolotniuk.oles@gmail.com)  
-
 ## Gif showcase
 ![Twitter demo](http://95.85.45.32/assets/twitter-infinite.gif)
 ![Instagram demo](http://95.85.45.32/assets/instagram-finite.gif)
+
+## Contacts
+Author is Oles Bolotniuk (bolotniuk.oles@gmail.com)  
 
 link to chrome webshop:  
 link to opera webshop:  
