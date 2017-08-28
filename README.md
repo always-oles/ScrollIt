@@ -19,6 +19,7 @@ Messengers:
 
 Others:  
 * Instagram  
+* Twitter
 * Youtube (suggested videos, comments)  
 * Reddit (comments)  
 * Facebook (news)  
