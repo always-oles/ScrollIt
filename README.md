@@ -7,7 +7,7 @@ Today lots of websites are using lazy-loading technique to show new items/ news/
 ## Showcase (few screenshots, more below @gif showcase section)
 #### This is how extension context menu looks like:  
 ![Context menu screenshot](http://95.85.45.32/assets/context-menu-en.jpg)  
-#### Message after some job is done:  
+#### Message after task is done:  
 ![Browser message](http://95.85.45.32/assets/message-en.jpg)  
 
 ## Languages
