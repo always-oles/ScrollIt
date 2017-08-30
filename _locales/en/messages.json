@@ -35,10 +35,6 @@
     "message": "To use this extension - just press your right mouse button anywhere on the page and select a scrolling option"
   }
 
-  ,"donate": {
-    "message": "If you like this app - you can support author by donation (app is free and open source)"
-  }
-
   ,"github_page": {
     "message": "Github project page"
   }

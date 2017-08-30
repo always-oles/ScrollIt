@@ -36,6 +36,8 @@ document.addEventListener("mousedown", function(event){
 /**
   The actual message listener when context menu is getting clicked
   @param object message = contains action and data from context menu element
+  @param object sender = unused, prolly contains an extension data
+  @param function sendResponse = callback function
 **/
 chrome.runtime.onMessage.addListener( (message, sender, sendResponse) => {
   switch (message.action) {
@@ -65,6 +67,8 @@ chrome.runtime.onMessage.addListener( (message, sender, sendResponse) => {
 
 /**
   Runs when message from context menu is received and we will scroll
+  @param object message = contains data from context menu (direction, type of
+  scrolling like infinite / finite)
 **/
 function prepareScroll (message) {
 
@@ -85,6 +89,8 @@ function prepareScroll (message) {
 
 /**
   Hook that runs before scrolling and launches it after
+  @param string direction = "up" / "down"
+  @param int total = how many times we need to scroll (-1 if infinite)
 **/
 function beforeScroll(direction, total) {
 
@@ -146,7 +152,7 @@ function closestScrollable (element, previousMaxElement, previousMaxHeight = 0) 
   The actual scroll function
   @param string direction "up/down"
   @param integer total = how many times to scroll
-  @param node closestScrollable = item which will be scrolled
+  @param node closestScrollable = div/container which will be scrolled
 **/
 function scroll (direction, total, closestScrollable) {
 
@@ -196,13 +202,14 @@ function scroll (direction, total, closestScrollable) {
           imStuck(safeCounter, appendix);
         }
       } else {
-        // reset stuck counter if moving
+        // reset stuck counter if progress goes
         stuckCounter = 0;
       }
     }
     // scrolling window by default
     else {
 
+      // save previous value
       previousWindowHeight = helpers.getWindowHeight();
 
       if (direction == "up")
@@ -217,7 +224,7 @@ function scroll (direction, total, closestScrollable) {
             imStuck(safeCounter, appendix);
           }
         } else {
-          // reset stuck counter if moving
+          // reset stuck counter if progress goes
           stuckCounter = 0;
         }
     }
@@ -247,6 +254,8 @@ function scroll (direction, total, closestScrollable) {
 
 /**
   Sends user a message that loop is stuck
+  @param int safeCounter = how many times main loop went
+  @param string appendix = "click to switch to that tab"
 **/
 function imStuck(safeCounter, appendix) {
   chrome.extension.sendMessage({

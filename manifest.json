@@ -15,13 +15,6 @@
     "persistent": true
   },
   "options_page": "src/options/index.html",
-  "browser_action": {
-    "default_icon": {
-      "19": "icons/icon19.png",
-      "38": "icons/icon38.png"
-    },
-    "default_popup": "src/options/browser_action.html"
-  },
   "permissions": [
     "tabs",
     "contextMenus",

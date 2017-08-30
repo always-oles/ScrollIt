@@ -1,4 +1,7 @@
+// time of a notification life
 const NOTIFICATION_EXPIRES = 6000;
+
+// tab which we are working with
 let startTabId = null;
 
 /**

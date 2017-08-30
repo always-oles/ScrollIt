@@ -25,11 +25,11 @@ helpers.detectInstagram = () => {
   if (window.location.href.includes('instagram')) {
 
     // find "load more" button
-    let anchor = helpers.x(`//a[contains(@href, "${window.location.pathname}")]`);
+    let nodes = helpers.x(`//a[contains(@href, "${window.location.pathname}")]`);
 
-    // click on it if it is found
-    if (anchor && anchor[0]) {
-      anchor[0].click();
+    // click on last of this kind of nodes
+    if (nodes.length) {
+      nodes[nodes.length-1].click();
     }
   }
 }
@@ -40,7 +40,7 @@ helpers.detectReddit = () => {
     // find "load more" button
     let nodes = helpers.x(`//a[starts-with(@id,'more_')]`);
 
-    // click on it if it is found
+    // click on last of this kind of nodes
     if (nodes.length) {
       nodes[nodes.length-1].click();
     }
@@ -53,7 +53,7 @@ helpers.detectYoutube = () => {
     // find "load more" button
     let nodes = helpers.x(`//*[contains(@class, 'load-more-button')]`);
 
-    // click on it if it is found
+    // click on last of this kind of nodes
     if (nodes.length) {
       nodes[nodes.length-1].click();
     }
