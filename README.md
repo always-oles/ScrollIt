@@ -60,7 +60,7 @@ and *scrolling option* (infinite / N times).
 ![Instagram demo](http://95.85.45.32/assets/instagram-finite.gif)
 
 ## Downloads  
-**Chrome webstore**: https://chrome.google.com/webstore/detail/scroll-it/nlndoolndemidhlomaokpfbicfnjeeed?hl=ru
+**Chrome webstore**: https://chrome.google.com/webstore/detail/scroll-it/nlndoolndemidhlomaokpfbicfnjeeed
 
 Due to slow (**VERY SLOW**) **Opera webstore** publication speed here is a direct link to current version of app:  
 https://www.dropbox.com/s/k9nokwvmv0fknlz/ScrollIt.nex?dl=1  
