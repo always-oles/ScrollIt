@@ -1,16 +1,31 @@
 html, body {
   padding: 0px;
-  font-size: 1.2em;
+  color: #1e76db;
+}
+
+a.profile{
+  color: #1e76db;
+  display: inline-block;
+  margin-top: 25px;
+  text-decoration: none;
+  border-bottom: 1px dashed #207ce5;
 }
 
 .container {
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 1.8em;
 }
 
 .main {
   max-width: 40%;
   padding: 20px;
+  text-align: center;
+}
+
+.browser-action .main{
+  min-width: 250px;
+  font-size: 1.5em;
   text-align: center;
 }
