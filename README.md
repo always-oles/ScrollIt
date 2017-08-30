@@ -59,9 +59,11 @@ and *scrolling option* (infinite / N times).
 ![Twitter demo](http://95.85.45.32/assets/twitter-infinite.gif)
 ![Instagram demo](http://95.85.45.32/assets/instagram-finite.gif)
 
+## Downloads  
+**Chrome webstore**: https://chrome.google.com/webstore/detail/scroll-it/nlndoolndemidhlomaokpfbicfnjeeed?hl=ru
+
+Due to slow (**VERY SLOW**) **Opera webstore** publication speed here is a direct link to current version of app:  
+https://www.dropbox.com/s/k9nokwvmv0fknlz/ScrollIt.nex?dl=1  
+
 ## Contacts
 Author is Oles Bolotniuk (bolotniuk.oles@gmail.com)  
-
-link to chrome webshop:  
-link to opera webshop:  
-link to direct downloads:  
