@@ -27,8 +27,11 @@ Others:
 * Facebook (news)  
 
 ## FAQ
+**Q:** *I launched a scroll and can't scroll manually after that*  
+**A:** Click on the "Stop" scrolling option in context menu  
+
 **Q:** *Where should I install it from?*  
-**A:** From official chrome/opera webstores, links are below. If there is no such
+**A:** From official chrome/opera webstores, links are below. If there are no such
 extensions, feel free to install it manually by links given in contacts section  
 
 **Q:** *I clicked on infinite scrolling and nothing happens*  

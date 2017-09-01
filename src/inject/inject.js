@@ -97,7 +97,12 @@ function beforeScroll(direction, total) {
   // check if we are scrolling the instagram, we need it once
   helpers.detectInstagram();
 
-  // go go go!
+  // happens when launched from extensions bar
+  if (clickedElement == null) {
+    clickedElement = document.body;
+  }
+
+  // go go go
   scroll(direction, total, closestScrollable(clickedElement));
 }
 
