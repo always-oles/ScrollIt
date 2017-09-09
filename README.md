@@ -66,7 +66,7 @@ and *scrolling option* (infinite / N times).
 **Chrome webstore**: https://chrome.google.com/webstore/detail/scroll-it/nlndoolndemidhlomaokpfbicfnjeeed
 
 Due to slow (**VERY SLOW**) **Opera webstore** publication speed here is a direct link to current version of app:  
-https://www.dropbox.com/s/karwzb0idwdw3dz/ScrollIt.nex?dl=1
+https://www.dropbox.com/s/fkamukllp8jyerc/ScrollIt.nex?dl=1
 
 ## Contacts
 Author is Oles Bolotniuk (bolotniuk.oles@gmail.com)  
