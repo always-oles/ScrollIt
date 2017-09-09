@@ -1,6 +1,6 @@
 {
   "name": "Scroll it!",
-  "version": "1.0.6",
+  "version": "1.0.5",
   "manifest_version": 2,
   "description": "__MSG_extension_description__",
   "homepage_url": "https://github.com/always-oles/ScrollIt",
@@ -14,6 +14,14 @@
     "scripts": ["src/background/background.js"],
     "persistent": true
   },
+  "browser_action": {
+     "default_icon": {
+       "19": "icons/icon19.png",
+       "38": "icons/icon38.png"
+     },
+     "default_popup": "src/options/browser_action.html"
+  },
+  "options_page": "src/options/index.html",
   "permissions": [
     "tabs",
     "contextMenus",
