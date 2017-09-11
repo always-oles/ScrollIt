@@ -63,11 +63,8 @@ Install extension from webshop or manually from files
 ![Instagram demo](http://95.85.45.32/assets/instagram-finite.gif)
 
 ## Downloads  
-**Chrome webstore**: https://chrome.google.com/webstore/detail/scroll-it/nlndoolndemidhlomaokpfbicfnjeeed
+**Chrome webstore**: https://chrome.google.com/webstore/detail/scroll-it/nlndoolndemidhlomaokpfbicfnjeeed  
 **Opera webstore**: https://addons.opera.com/en-gb/extensions/details/scroll-it/
-
-Due to slow (**VERY SLOW**) **Opera webstore** publication speed here is a direct link to current version of app:  
-https://www.dropbox.com/s/fkamukllp8jyerc/ScrollIt.nex?dl=1
 
 ## Contacts
 Author is Oles Bolotniuk (bolotniuk.oles@gmail.com)  
