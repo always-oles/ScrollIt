@@ -1,7 +1,5 @@
 var helpers = {};
 
-// Milliseconds
-helpers.LAZY_DELAY_DURATION = 1000; 
 
 helpers.DEFAULT_DOCUMENT_BODY = document.body;
 helpers.bodyElement = helpers.DEFAULT_DOCUMENT_BODY;
@@ -66,27 +64,13 @@ helpers.detectYoutube = () => {
   }
 }
 
-helpers.sleep = (ms) => {
-	return new Promise(resolve => setTimeout(resolve, ms));
-}
-
-helpers.sleep_block = (ms) => {
-	const date = Date.now();
-	let currentDate = null;
-	do {
-		currentDate = Date.now();
-	} while (currentDate - date < ms);
-	
-}
-
 
 helpers.detectRedditChat = () => {
   if (window.location.href.includes("reddit.com/chat")) {
     let users = helpers.x('//a[contains(@href, "reddit.com/user")]');
     if (users.length) {
       let first_user = users[0];
-	  
-	  console.log("???");
+ 
 	  // Set the body element for checking scroll heights
 	  
 	  
@@ -106,10 +90,6 @@ helpers.detectRedditChat = () => {
 		console.log("scrolling up due to reddit chat!");
         
         first_user.dispatchEvent(e_wheel);
-		
-		//helpers.sleep_block(helpers.LAZY_DELAY_DURATION);
-		console.log("Done waiting");
-		
       }
     }
     
