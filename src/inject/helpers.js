@@ -60,6 +60,23 @@ helpers.detectYoutube = () => {
   }
 }
 
+
+helpers.detectRedditChat = () => {
+  if (window.location.href.includes("reddit.com/chat")) {
+    let users = helpers.x('//a[contains(@href, "reddit.com/user")]');
+    if (users.length) {
+      let first_user = users[0];
+ 
+      if (first_user.previousSibling.textContent.includes("Loading")) {
+        // Fire a mouseup event
+        
+      }
+    }
+    
+  }
+
+}
+
 /**
   Obvious helper
 **/
