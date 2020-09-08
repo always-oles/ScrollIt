@@ -183,6 +183,7 @@ function scroll (direction, total, closestScrollable) {
     // we need to these websites "load more" button every iteration
     helpers.detectReddit();
     helpers.detectYoutube();
+	helpers.detectRedditChat();
 
     ++safeCounter;
     isRunning = true;
