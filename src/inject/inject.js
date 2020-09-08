@@ -65,6 +65,15 @@ chrome.runtime.onMessage.addListener( (message, sender, sendResponse) => {
 
 });
 
+
+function handleStuck (safeCounter, appendix) {
+	// we are stuck
+	if (++stuckCounter >= STUCK_RETRIES) {
+	  finishScrolling();
+	  imStuck(safeCounter, appendix);
+	}
+}
+
 /**
   Runs when message from context menu is received and we will scroll
   @param object message = contains data from context menu (direction, type of
@@ -201,12 +210,11 @@ function scroll (direction, total, closestScrollable) {
 
       // check if this is getting bigger
       if (closestScrollable.maxElement.clientHeight == previousMaxElemHeight) {
+		  
+		if (helpers.getContainerHeight() == previousWindowHeight) {
+			handleStuck(safeCounter, appendix);
+		}
 
-        // we are stuck
-        if (++stuckCounter >= STUCK_RETRIES) {
-          finishScrolling();
-          imStuck(safeCounter, appendix);
-        }
       } else {
         // reset stuck counter if progress goes
         stuckCounter = 0;
@@ -225,10 +233,7 @@ function scroll (direction, total, closestScrollable) {
 
         // check for stucking
         if ( helpers.getWindowHeight() == previousWindowHeight ) {
-          if (++stuckCounter >= STUCK_RETRIES) {
-            finishScrolling();
-            imStuck(safeCounter, appendix);
-          }
+          handleStuck(safeCounter, appendix);
         } else {
           // reset stuck counter if progress goes
           stuckCounter = 0;
