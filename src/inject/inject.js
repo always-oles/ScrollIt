@@ -196,6 +196,8 @@ function scroll (direction, total, closestScrollable) {
 
     ++safeCounter;
     isRunning = true;
+    // save previous value
+    previousWindowHeight = helpers.getContainerHeight();
 
     // if we found an element that can be scrolled
     if (closestScrollable.node) {
@@ -223,8 +225,6 @@ function scroll (direction, total, closestScrollable) {
     // scrolling window by default
     else {
 
-      // save previous value
-      previousWindowHeight = helpers.getWindowHeight();
 
       if (direction == "up")
         window.scrollTo(0, -helpers.getWindowHeight());
