@@ -69,7 +69,12 @@ helpers.detectRedditChat = () => {
  
       if (first_user.previousSibling.textContent.includes("Loading")) {
         // Fire a mouseup event
+        // Tested on chrome devtools
+        e_wheel = document.createEvent("MouseEvents");
+        e_wheel.initEvent("wheel", true, true)
+        e_wheel.detail = 1;
         
+        first_user.dispatchEvent(e_wheel);
       }
     }
     
