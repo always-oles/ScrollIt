@@ -1,5 +1,9 @@
 var helpers = {};
 
+
+helpers.DEFAULT_DOCUMENT_BODY = document.body;
+helpers.bodyElement = helpers.DEFAULT_DOCUMENT_BODY;
+
 /**
   Xpath helper
   @param string STR_XPATH = the actual xpath of searched element(s)
@@ -67,12 +71,23 @@ helpers.detectRedditChat = () => {
     if (users.length) {
       let first_user = users[0];
  
+	  // Set the body element for checking scroll heights
+	  
+	  
+	  console.log({"helpers.bodyElement": helpers.bodyElement });
+	  
+	  helpers.bodyElement = first_user.parentElement;
+	  
+	  console.log({"helpers.bodyElement": helpers.bodyElement });
+	  
       if (first_user.previousSibling.textContent.includes("Loading")) {
         // Fire a mouseup event
         // Tested on chrome devtools
         e_wheel = document.createEvent("MouseEvents");
-        e_wheel.initEvent("wheel", true, true)
+        e_wheel.initEvent("wheel", true, true);
         e_wheel.detail = 1;
+		
+		console.log("scrolling up due to reddit chat!");
         
         first_user.dispatchEvent(e_wheel);
       }
@@ -93,4 +108,17 @@ helpers.getWindowHeight = () => {
     body.scrollHeight, body.offsetHeight, html.clientHeight,
     html.scrollHeight, html.offsetHeight
   );
+}
+
+
+helpers.getContainerHeight = () => {
+	const body = helpers.bodyElement,
+		  html = document.documentElement;
+	
+
+  return Math.max(
+    body.scrollHeight, body.offsetHeight, html.clientHeight,
+    html.scrollHeight, html.offsetHeight
+  );
+	
 }
